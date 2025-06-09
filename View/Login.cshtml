@@ -1,0 +1,98 @@
+@* View de login *@
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #3a3a3a;
+        }
+        .container {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px 0 rgba(180, 180, 200, 0.13);
+            padding: 36px 32px 32px 32px;
+            margin-top: 64px;
+            max-width: 400px;
+        }
+        h1 {
+            color: #7b8fa1;
+            font-weight: 700;
+            margin-bottom: 32px;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .btn-success {
+            background: #b6e2d3;
+            color: #2d5c4d;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            width: 100%;
+            margin-top: 12px;
+        }
+        .btn-success:hover {
+            background: #a0d9c2;
+        }
+        .form-label {
+            color: #7b8fa1;
+            font-weight: 600;
+        }
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #e3eafc;
+            background: #f9fafb;
+        }
+        .form-select {
+            border-radius: 8px;
+            border: 1px solid #e3eafc;
+            background: #f9fafb;
+        }
+        .alert {
+            margin-top: 10px;
+        }
+        @@media (max-width: 600px) {
+            .container { padding: 12px; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <!-- Exibe mensagem de erro, se houver -->
+        @if (ViewBag.Erro != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Erro</div>
+        }
+        <!-- Formulário de login -->
+        <form asp-action="Login" method="post">
+            <div class="mb-3">
+                <label for="NomeUsuario" class="form-label">Nome de Usuário</label>
+                <input type="text" class="form-control" id="NomeUsuario" name="NomeUsuario" required />
+            </div>
+            <div class="mb-3">
+                <label for="TipoUsuario" class="form-label">Tipo de Usuário</label>
+                <!-- Seleção do tipo de usuário -->
+                <select class="form-select" id="TipoUsuario" name="TipoUsuario" required>
+                    <option value="">Selecione...</option>
+                    <option value="usuario">Usuário</option>
+                    <option value="admin">Administrador</option>
+                </select>
+            </div>
+            <!-- Botão para enviar o formulário -->
+            <button type="submit" class="btn btn-success">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>
