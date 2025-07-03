@@ -1,6 +1,4 @@
-# Csharp
-
-## Revisão C# - Gerenciador de Tarefas
+# Gerenciador de Tarefas com uso de C#
 
 Este projeto é uma aplicação ASP.NET Core MVC para gerenciamento de tarefas (ToDo List), utilizando um arquivo JSON como banco de dados.
 
@@ -28,6 +26,3 @@ Este projeto é uma aplicação ASP.NET Core MVC para gerenciamento de tarefas (
 2. Execute `dotnet run` na pasta do projeto
 3. Acesse `http://localhost:5000` no navegador
 
----
-
-> **Observação:** Este projeto utiliza um arquivo JSON como banco de dados, facilitando testes e uso local sem necessidade de um SGBD tradicional.
