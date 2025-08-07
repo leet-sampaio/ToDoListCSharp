@@ -7,55 +7,81 @@ using System.Linq;
 
 namespace projeto_c__main.Controllers
 {
-    // Controller responsável pelas telas web (MVC)
     public class TarefasMvcController : Controller
     {
-        // Exibe a tela de login (GET)
-        [HttpGet]
-        public IActionResult Login()
+        public IActionResult Index(string pesquisa, string ordenarPor, string direcao)
         {
-            return View("~/View/Login.cshtml");
-        }
-
-        // Processa o login (POST)
-        [HttpPost]
-        public IActionResult Login(string NomeUsuario, string TipoUsuario)
-        {
-            // Valida se os campos foram preenchidos
-            if (string.IsNullOrWhiteSpace(NomeUsuario) || string.IsNullOrWhiteSpace(TipoUsuario))
+            BancoDados.CarregarDados(); 
+            var tarefas = BancoDados.Tarefas.AsQueryable();
+            
+            // Aplica filtro de pesquisa se foi fornecido
+            if (!string.IsNullOrWhiteSpace(pesquisa))
             {
-                ViewBag.Erro = "Preencha todos os campos.";
-                return View("~/View/Login.cshtml");
+                tarefas = tarefas.Where(t => 
+                    t.Titulo.Contains(pesquisa, StringComparison.OrdinalIgnoreCase) ||
+                    t.Usuario.Contains(pesquisa, StringComparison.OrdinalIgnoreCase));
+                
+                // Passa o termo de pesquisa para a view
+                ViewBag.TermoPesquisa = pesquisa;
             }
-            // Salva o nome e tipo do usuário na sessão
-            HttpContext.Session.SetString("NomeUsuario", NomeUsuario);
-            HttpContext.Session.SetString("TipoUsuario", TipoUsuario);
-            return RedirectToAction("Index");
-        }
-
-        // Garante que o usuário esteja logado antes de acessar outras telas
-        public override void OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext context)
+        
+        //ORDENAÇÃO
+        // Verifica se uma ordenação foi solicitada
+        if (!string.IsNullOrWhiteSpace(ordenarPor))
         {
-            var action = context.ActionDescriptor.RouteValues["action"];
-            if (action != "Login")
+            string direcaoAtual;
+
+            // Alterna entre asc e desc quando a mesma coluna for clicada novamente
+            if (ViewBag.OrdenarPor != null && ViewBag.OrdenarPor.ToString() == ordenarPor)
             {
-                var nomeUsuario = HttpContext.Session.GetString("NomeUsuario");
-                var tipoUsuario = HttpContext.Session.GetString("TipoUsuario");
-                if (string.IsNullOrEmpty(nomeUsuario) || string.IsNullOrEmpty(tipoUsuario))
+                // Usa a direção anterior (vinda do ViewBag) para alternar
+                direcaoAtual = ViewBag.Direcao == "asc" ? "desc" : "asc";
+            }
+            else
+            {
+                // Primeiro clique na coluna: começa com asc
+                direcaoAtual = "asc";
+            }
+
+            // Aplica ordenação
+            tarefas = direcaoAtual == "desc"
+                ? ordenarPor.ToLower() switch
                 {
-                    context.Result = RedirectToAction("Login");
+                    "id" => tarefas.OrderByDescending(t => t.Id),
+                    "titulo" => tarefas.OrderByDescending(t => t.Titulo),
+                    "usuario" => tarefas.OrderByDescending(t => t.Usuario),
+                    "status" => tarefas.OrderByDescending(t => t.Status),
+                    "criadoem" => tarefas.OrderByDescending(t => t.CriadoEm),
+                    "modificadoem" => tarefas.OrderByDescending(t => t.ModificadoEm),
+                    "concluidoem" => tarefas.OrderByDescending(t => t.ConcluidoEm),
+                    _ => tarefas.OrderByDescending(t => t.CriadoEm)
                 }
-            }
-            base.OnActionExecuting(context);
+                : ordenarPor.ToLower() switch
+                {
+                    "id" => tarefas.OrderBy(t => t.Id),
+                    "titulo" => tarefas.OrderBy(t => t.Titulo),
+                    "usuario" => tarefas.OrderBy(t => t.Usuario),
+                    "status" => tarefas.OrderBy(t => t.Status),
+                    "criadoem" => tarefas.OrderBy(t => t.CriadoEm),
+                    "modificadoem" => tarefas.OrderBy(t => t.ModificadoEm),
+                    "concluidoem" => tarefas.OrderBy(t => t.ConcluidoEm),
+                    _ => tarefas.OrderBy(t => t.CriadoEm)
+                };
+
+            // Salva as informações para a próxima requisição
+            ViewBag.OrdenarPor = ordenarPor;
+            ViewBag.Direcao = direcaoAtual;
+        }
+        else
+        {
+            // Ordenação padrão
+            tarefas = tarefas.OrderByDescending(t => t.CriadoEm);
+            ViewBag.OrdenarPor = "CriadoEm";
+            ViewBag.Direcao = "desc";
         }
 
-        // Lista todas as tarefas
-        public IActionResult Index()
-        {
-            BancoDados.CarregarDados(); // Carrega tarefas do arquivo
-            var tarefas = BancoDados.Tarefas.ToList();
-            return View("~/View/Index.cshtml", tarefas);
-        }
+        return View("~/View/Index.cshtml", tarefas.ToList());
+    }
 
         // Exibe o formulário de criação de tarefa
         [HttpGet]
@@ -100,11 +126,30 @@ namespace projeto_c__main.Controllers
                 BancoDados.CarregarDados();
                 var tarefaDb = BancoDados.Tarefas.FirstOrDefault(t => t.Id == tarefa.Id);
                 if (tarefaDb == null) return NotFound();
+                
+                // Preserva a data de criação original
+                var criadoEmOriginal = tarefaDb.CriadoEm;
+                var statusAnterior = tarefaDb.Status;
+                
                 // Atualiza os campos da tarefa
                 tarefaDb.Titulo = tarefa.Titulo;
                 tarefaDb.Usuario = tarefa.Usuario;
                 tarefaDb.Status = tarefa.Status;
-                tarefaDb.ConcluidoEm = tarefa.Status ? DateTime.Now : null;
+                tarefaDb.CriadoEm = criadoEmOriginal; 
+                tarefaDb.ModificadoEm = DateTime.Now; 
+                
+                // Atualiza a data de conclusão apenas se o status mudou para concluído
+                if (tarefa.Status && !statusAnterior)
+                {
+                    tarefaDb.ConcluidoEm = DateTime.Now;
+                }
+                else if (!tarefa.Status && statusAnterior)
+                {
+                    // Se mudou de concluído para pendente, remove a data de conclusão
+                    tarefaDb.ConcluidoEm = null;
+                }
+                // Se o status não mudou, mantém a data de conclusão original
+                
                 BancoDados.SalvarDados();
                 return RedirectToAction("Index");
             }
@@ -134,3 +179,4 @@ namespace projeto_c__main.Controllers
         }
     }
 }
+

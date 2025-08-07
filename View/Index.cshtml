@@ -15,131 +15,451 @@
     <title>@ViewData["Title"]</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
-            font-family: 'Segoe UI', Arial, sans-serif;
-            color: #3a3a3a;
-        }
-        .container {
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 4px 24px 0 rgba(180, 180, 200, 0.13);
-            padding: 36px 32px 32px 32px;
-            margin-top: 48px;
-            max-width: 900px;
-        }
-        h1 {
-            color: #7b8fa1;
-            font-weight: 700;
-            margin-bottom: 32px;
-            letter-spacing: 1px;
-        }
-        .btn-success, .btn-primary, .btn-warning, .btn-danger, .btn-secondary {
-            border: none;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
-        .btn-success {
-            background: #b6e2d3;
-            color: #2d5c4d;
-        }
-        .btn-success:hover {
-            background: #a0d9c2;
-        }
-        .btn-warning {
-            background: #ffe5b4;
-            color: #a67c00;
-        }
-        .btn-warning:hover {
-            background: #ffdb99;
-        }
-        .btn-danger {
-            background: #f7b6b6;
-            color: #a12d2d;
-        }
-        .btn-danger:hover {
-            background: #f28b8b;
-        }
-        .btn-secondary {
-            background: #d1d8e0;
-            color: #4a5568;
-        }
-        .table {
-            background: #f9fafb;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-top: 18px;
-        }
-        th {
-            background: #e3eafc;
-            color: #5a6d8a;
-            font-weight: 600;
-        }
-        td, th {
-            vertical-align: middle;
-        }
-        .status-pendente {
-            color: #f7b267;
-            font-weight: 600;
-        }
-        .status-concluido {
-            color: #7ed6a7;
-            font-weight: 600;
-        }
-        .actions {
-            display: flex;
-            gap: 8px;
-        }
-        @@media (max-width: 600px) {
-            .container { padding: 12px; }
-            h1 { font-size: 1.5rem; }
-        }
-    </style>
+  
+  body {
+    background: linear-gradient(135deg, #f7f9fb 0%, #dde4f0 100%);
+    font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #2d3748;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px 20px;
+  }
+
+  .container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
+    padding: 40px;
+    margin: 40px auto;
+    max-width: 1400px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(224, 228, 240, 0.6);
+  }
+
+  h1 {
+    color: #475569;
+    font-weight: 600;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    text-align: center;
+    letter-spacing: -0.015em;
+  }
+
+  .btn {
+    border-radius: 12px;
+    font-weight: 500;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .btn-success {
+    background: linear-gradient(135deg, #c5eadf 0%, #b4dff7 100%);
+    color: #2f4858;
+  }
+
+  .btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(180, 223, 247, 0.3);
+  }
+
+  .btn-secondary {
+    background: linear-gradient(135deg, #d9dde4 0%, #bfc9d7 100%);
+    color: #374151;
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(191, 201, 215, 0.3);
+  }
+
+  .btn-outline-secondary {
+    background: transparent;
+    border: 2px solid #cbd5e0;
+    color: #4a5568;
+  }
+
+  .btn-outline-secondary:hover {
+    background: #e2e8f0;
+    color: #2d3748;
+  }
+
+  .table {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    border: none;
+    width: 100%;
+  }
+
+  .table thead th {
+    background: #f1f5f9;
+    color: #4a5568;
+    font-weight: 600;
+    padding: 18px 16px;
+    text-align: center;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }
+
+  .table tbody td {
+    padding: 16px;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px solid #edf2f7;
+  }
+
+  .table tbody tr:hover {
+    background: #f8fafc;
+  }
+
+  .id-badge {
+    background: #b6a4f5;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+
+  .status-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .status-concluido {
+    background: #c6f6d5;
+    color: #22543d;
+  }
+
+  .status-pendente {
+    background: #fff7e6;
+    color: #744210;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-edit {
+    background: #fcd34d;
+    color: #1a202c;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    border: none;
+  }
+
+  .btn-edit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(252, 211, 77, 0.3);
+  }
+
+  .btn-delete {
+    background: #f87171;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .btn-delete:hover {
+    transform: translateY(-2px) scale(1.1);
+    box-shadow: 0 8px 25px rgba(248, 113, 113, 0.4);
+  }
+
+  .date-time {
+    color: #718096;
+    font-size: 0.85rem;
+  }
+
+  .user-info {
+    color: #4a5568;
+    font-weight: 500;
+  }
+
+  .btn-ordenar {
+    background: none;
+    border: none;
+    color: #4a5568;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-ordenar:hover {
+    color: #7c3aed;
+  }
+
+  .sort-indicator {
+    font-size: 0.9em;
+    color: #7c3aed;
+    font-weight: bold;
+  }
+
+  .search-container {
+    background: #f1f5f9;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .form-control {
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+    padding: 12px 16px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+  }
+
+  .form-control:focus {
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.1);
+    outline: none;
+  }
+
+  .form-control::placeholder {
+    color: #a0aec0;
+  }
+
+  .alert-info {
+    background-color: #e3f2fd;
+    border-color: #bbdefb;
+    color: #1976d2;
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+
+  .alert-warning {
+    background-color: #fff3cd;
+    border-color: #ffecb5;
+    color: #856404;
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+
+  
+</style>
+
 </head>
 <body>
     <div class="container">
         <h1>@ViewData["Title"]</h1>
-        <!-- Botão para criar nova tarefa -->
-        <a href="@Url.Action("Create")" class="btn btn-success mb-3">Criar Tarefa</a>
+        
+        <!-- Formulário de pesquisa -->
+        <div class="search-container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <form method="get" action="@Url.Action("Index")" class="d-flex gap-2">
+                        <input type="text" name="pesquisa" class="form-control" 
+                               placeholder="Pesquisar por título ou usuário..." 
+                               value="@ViewBag.TermoPesquisa" />
+                        <button type="submit" class="btn btn-secondary px-4">Pesquisar</button>
+                        @if (!string.IsNullOrEmpty(ViewBag.TermoPesquisa))
+                        {
+                            <a href="@Url.Action("Index")" class="btn btn-outline-secondary">Limpar</a>
+                        }
+                    </form>
+                </div>
+                <div class="col-md-4 text-end">
+                    <!-- Botão para criar nova tarefa -->
+                    <a href="@Url.Action("Create")" class="btn btn-primary">
+                        Criar Tarefa
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        @if (!string.IsNullOrEmpty(ViewBag.TermoPesquisa))
+        {
+            <div class="alert alert-info">
+                <i class="bi bi-search"></i> Resultados para: "<strong>@ViewBag.TermoPesquisa</strong>"
+                (@Model.Count() resultado(s) encontrado(s))
+            </div>
+        }
         <!-- Tabela de tarefas -->
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Título</th>
-                    <th>Usuário</th>
-                    <th>Status</th>
-                    <th>Criado em</th>
-                    <th>Concluído em</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @* Percorre cada tarefa e exibe na tabela *@
-                @foreach (var tarefa in Model)
-                {
+        @if (Model.Any())
+        {
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <td>@tarefa.Id</td>
-                        <td>@tarefa.Titulo</td>
-                        <td>@tarefa.Usuario</td>
-                        <td>
-                            <span class="@(tarefa.Status ? "status-concluido" : "status-pendente")">
-                                @(tarefa.Status ? "Concluído" : "Pendente")
-                            </span>
-                        </td>
-                        <td>@tarefa.CriadoEm.ToString("dd/MM/yyyy HH:mm")</td>
-                        <td>@(tarefa.ConcluidoEm.HasValue ? tarefa.ConcluidoEm.Value.ToString("dd/MM/yyyy HH:mm") : "-")</td>
-                        <td class="actions">
-                            <!-- Botão para editar -->
-                            <a href="@Url.Action("Edit", new { id = tarefa.Id })" class="btn btn-warning btn-sm">Editar</a>
-                            <!-- Botão para excluir -->
-                            <a href="@Url.Action("Delete", new { id = tarefa.Id })" class="btn btn-danger btn-sm">Excluir</a>
-                        </td>
+                        <th>
+                            <a href="@Url.Action("Index", new { pesquisa = ViewBag.TermoPesquisa, ordenarPor = "Id", direcao = (ViewBag.OrdenarPor == "Id" && ViewBag.Direcao == "asc") ? "desc" : "asc" })" 
+                               class="btn-ordenar">
+                               ID
+                               @if (ViewBag.OrdenarPor == "Id")
+                               {
+                                   <span class="sort-indicator">@(ViewBag.Direcao == "asc" ? "↑" : "↓")</span>
+                               }
+                            </a>
+                        </th>
+                        <th>
+                            <a href="@Url.Action("Index", new { pesquisa = ViewBag.TermoPesquisa, ordenarPor = "Titulo", direcao = (ViewBag.OrdenarPor == "Titulo" && ViewBag.Direcao == "asc") ? "desc" : "asc" })" 
+                               class="btn-ordenar">
+                               Título
+                               @if (ViewBag.OrdenarPor == "Titulo")
+                               {
+                                   <span class="sort-indicator">@(ViewBag.Direcao == "asc" ? "↑" : "↓")</span>
+                               }
+                            </a>
+                        </th>
+                        <th>
+                            <a href="@Url.Action("Index", new { pesquisa = ViewBag.TermoPesquisa, ordenarPor = "Usuario", direcao = (ViewBag.OrdenarPor == "Usuario" && ViewBag.Direcao == "asc") ? "desc" : "asc" })" 
+                               class="btn-ordenar">
+                               Usuário
+                               @if (ViewBag.OrdenarPor == "Usuario")
+                               {
+                                   <span class="sort-indicator">@(ViewBag.Direcao == "asc" ? "↑" : "↓")</span>
+                               }
+                            </a>
+                        </th>
+                        <th>
+                            <a href="@Url.Action("Index", new { pesquisa = ViewBag.TermoPesquisa, ordenarPor = "Status", direcao = (ViewBag.OrdenarPor == "Status" && ViewBag.Direcao == "asc") ? "desc" : "asc" })" 
+                               class="btn-ordenar">
+                               Status
+                               @if (ViewBag.OrdenarPor == "Status")
+                               {
+                                   <span class="sort-indicator">@(ViewBag.Direcao == "asc" ? "↑" : "↓")</span>
+                               }
+                            </a>
+                        </th>
+                        <th>
+                            <a href="@Url.Action("Index", new { pesquisa = ViewBag.TermoPesquisa, ordenarPor = "CriadoEm", direcao = (ViewBag.OrdenarPor == "CriadoEm" && ViewBag.Direcao == "asc") ? "desc" : "asc" })" 
+                               class="btn-ordenar">
+                               Criado em
+                               @if (ViewBag.OrdenarPor == "CriadoEm")
+                               {
+                                   <span class="sort-indicator">@(ViewBag.Direcao == "asc" ? "↑" : "↓")</span>
+                               }
+                            </a>
+                        </th>
+                        <th>
+                            <a href="@Url.Action("Index", new { pesquisa = ViewBag.TermoPesquisa, ordenarPor = "ModificadoEm", direcao = (ViewBag.OrdenarPor == "ModificadoEm" && ViewBag.Direcao == "asc") ? "desc" : "asc" })" 
+                               class="btn-ordenar">
+                               Modificado em
+                               @if (ViewBag.OrdenarPor == "ModificadoEm")
+                               {
+                                   <span class="sort-indicator">@(ViewBag.Direcao == "asc" ? "↑" : "↓")</span>
+                               }
+                            </a>
+                        </th>
+                        <th>
+                            <a href="@Url.Action("Index", new { pesquisa = ViewBag.TermoPesquisa, ordenarPor = "ConcluidoEm", direcao = (ViewBag.OrdenarPor == "ConcluidoEm" && ViewBag.Direcao == "asc") ? "desc" : "asc" })" 
+                               class="btn-ordenar">
+                               Concluído em
+                               @if (ViewBag.OrdenarPor == "ConcluidoEm")
+                               {
+                                   <span class="sort-indicator">@(ViewBag.Direcao == "asc" ? "↑" : "↓")</span>
+                               }
+                            </a>
+                        </th>
+                        <th>Ações</th>
                     </tr>
+                </thead>
+                <tbody>
+                    @* Percorre cada tarefa e exibe na tabela *@
+                    @foreach (var tarefa in Model)
+                    {
+                        <tr>
+                            <td><span class="id-badge">#@tarefa.Id</span></td>
+                            <td class="fw-semibold">@tarefa.Titulo</td>
+                            <td>
+                                <span class="user-info">@tarefa.Usuario</span>
+                            </td>
+                            <td>
+                                <span class="status-badge @(tarefa.Status ? "status-concluido" : "status-pendente")">
+                                    @(tarefa.Status ? "Concluído" : "Pendente")
+                                </span>
+                            </td>
+                            <td>
+                                <div class="date-time">
+                                    @tarefa.CriadoEm.ToString("dd/MM/yyyy")<br>
+                                    @tarefa.CriadoEm.ToString("HH:mm")
+                                </div>
+                            </td>
+                            <td>
+                                <div class="date-time">
+                                    @if (tarefa.ModificadoEm.HasValue)
+                                    {
+                                        <span>@tarefa.ModificadoEm.Value.ToString("dd/MM/yyyy HH:mm")</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-secondary">-</span>
+                                    }
+                                </div>
+                            </td>
+                            <td>
+                                <div class="date-time">
+                                    @if (tarefa.ConcluidoEm.HasValue)
+                                    {
+                                        <span>@tarefa.ConcluidoEm.Value.ToString("dd/MM/yyyy HH:mm")</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-secondary">-</span>
+                                    }
+                                </div>
+                            </td>
+                            <td class="actions">
+                                <a href="@Url.Action("Edit", new { id = tarefa.Id })" 
+                                   class="btn-edit" 
+                                   title="Editar tarefa">
+                                    Editar
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = tarefa.Id })" 
+                                   class="btn-delete" 
+                                   title="Excluir tarefa"
+                                   onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')">
+                                    ×
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-warning text-center">
+                @if (!string.IsNullOrEmpty(ViewBag.TermoPesquisa))
+                {
+                    <h5>Nenhuma tarefa encontrada</h5>
+                    <p>Não foram encontradas tarefas que correspondam ao termo "<strong>@ViewBag.TermoPesquisa</strong>".</p>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Ver todas as tarefas</a>
                 }
-            </tbody>
-        </table>
+                else
+                {
+                    <h5>Nenhuma tarefa cadastrada</h5>
+                    <p>Você ainda não possui tarefas. Comece criando sua primeira tarefa!</p>
+                    <a href="@Url.Action("Create")" class="btn btn-success">Criar primeira tarefa</a>
+                }
+            </div>
+        }
     </div>
 </body>
 </html>

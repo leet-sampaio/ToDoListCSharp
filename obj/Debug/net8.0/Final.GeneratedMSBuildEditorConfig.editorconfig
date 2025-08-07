@@ -9,31 +9,27 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Final
 build_property.RootNamespace = Final
-build_property.ProjectDir = C:\Users\letic\Final\
+build_property.ProjectDir = C:\Users\letic\OneDrive\Word\GitHub\ToDoListCSharp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\letic\Final
+build_property.MSBuildProjectDirectory = C:\Users\letic\OneDrive\Word\GitHub\ToDoListCSharp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/letic/Final/View/Create.cshtml]
+[C:/Users/letic/OneDrive/Word/GitHub/ToDoListCSharp/View/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/letic/Final/View/Delete.cshtml]
+[C:/Users/letic/OneDrive/Word/GitHub/ToDoListCSharp/View/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/letic/Final/View/Edit.cshtml]
+[C:/Users/letic/OneDrive/Word/GitHub/ToDoListCSharp/View/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/letic/Final/View/Index.cshtml]
+[C:/Users/letic/OneDrive/Word/GitHub/ToDoListCSharp/View/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld1xJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/letic/Final/View/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld1xMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

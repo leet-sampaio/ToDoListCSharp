@@ -2630,11 +2630,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\letic\\Final\\Final.csproj",
+      "projectUniqueName": "C:\\Users\\letic\\OneDrive\\Word\\GitHub\\ToDoListCSharp\\Final.csproj",
       "projectName": "Final",
-      "projectPath": "C:\\Users\\letic\\Final\\Final.csproj",
+      "projectPath": "C:\\Users\\letic\\OneDrive\\Word\\GitHub\\ToDoListCSharp\\Final.csproj",
       "packagesPath": "C:\\Users\\letic\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\letic\\Final\\obj\\",
+      "outputPath": "C:\\Users\\letic\\OneDrive\\Word\\GitHub\\ToDoListCSharp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\letic\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -2698,7 +2698,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.410/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.412/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

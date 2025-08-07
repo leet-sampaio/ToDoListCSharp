@@ -11,16 +11,7 @@ namespace TarefasApi.Controllers
     [Route("api/tarefas")]
     public class TarefasController : ControllerBase
     {
-        [HttpGet("{tipoUsuario}/{nomeUsuario}")]
-        public ActionResult<List<TodoTask>> Get(string tipoUsuario, string nomeUsuario)
-        {
-            BancoDados.CarregarDados();
 
-            if (tipoUsuario.ToLower() == "admin")
-                return Ok(BancoDados.Tarefas);
-            else
-                return Ok(BancoDados.Tarefas.Where(t => t.Usuario == nomeUsuario).ToList());
-        }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id, [FromQuery] string tipoUsuario, [FromQuery] string nomeUsuario)
         {
@@ -63,12 +54,11 @@ namespace TarefasApi.Controllers
         {
             if (string.IsNullOrWhiteSpace(novaTarefa.Usuario) || string.IsNullOrWhiteSpace(novaTarefa.Titulo))
             {
-                return BadRequest("Os campos 'Usuario' e 'Titulo' são obrigatórios.");
+                return BadRequest("Os campos 'Usuário' e 'Título' são obrigatórios.");
             }
 
             BancoDados.CarregarDados();
 
-            // Gera um novo ID baseado no maior ID existente
             int novoId = BancoDados.Tarefas.Any()
                 ? BancoDados.Tarefas.Max(t => t.Id) + 1
                 : 1;
@@ -85,16 +75,11 @@ namespace TarefasApi.Controllers
 
             BancoDados.Tarefas.Add(tarefa);
             BancoDados.SalvarDados();
-            
-            return CreatedAtAction(nameof(Get), new { tipoUsuario = "admin", nomeUsuario = tarefa.Usuario }, tarefa);
+
+            return Ok(tarefa);
         }
 
 
     }
-    // DTO para receber apenas Usuario e Titulo
-    public class NovaTarefaDto
-    {
-        public string Usuario { get; set; }
-        public string Titulo { get; set; }
-    }
+
 }
