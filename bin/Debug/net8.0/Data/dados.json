@@ -54,15 +54,6 @@
     "ModificadoEm": null
   },
   {
-    "Id": 19,
-    "Titulo": "Assistir s\u00E9rie",
-    "Usuario": "Leticia",
-    "Status": false,
-    "CriadoEm": "2025-05-31T21:30:45-03:00",
-    "ConcluidoEm": null,
-    "ModificadoEm": null
-  },
-  {
     "Id": 20,
     "Titulo": "Cortar cabelo",
     "Usuario": "Kelvin",
@@ -91,12 +82,12 @@
   },
   {
     "Id": 23,
-    "Titulo": "Ir ao banco",
-    "Usuario": "Leticia",
+    "Titulo": "Ir ao banco do Ita\u00FA",
+    "Usuario": "Let\u00EDcia Sampaio",
     "Status": false,
     "CriadoEm": "2025-05-30T09:10:20.3040506-03:00",
     "ConcluidoEm": null,
-    "ModificadoEm": null
+    "ModificadoEm": "2025-08-07T17:45:05.1279673-03:00"
   },
   {
     "Id": 24,
@@ -198,15 +189,6 @@
     "ModificadoEm": null
   },
   {
-    "Id": 35,
-    "Titulo": "Pintar quadro",
-    "Usuario": "Leticia",
-    "Status": true,
-    "CriadoEm": "2025-05-29T10:00:00-03:00",
-    "ConcluidoEm": "2025-05-29T13:00:00-03:00",
-    "ModificadoEm": null
-  },
-  {
     "Id": 36,
     "Titulo": "Arrumar jardim",
     "Usuario": "Kelvin",
@@ -248,6 +230,15 @@
     "Usuario": "Kelvin",
     "Status": false,
     "CriadoEm": "2025-05-29T18:00:00-03:00",
+    "ConcluidoEm": null,
+    "ModificadoEm": null
+  },
+  {
+    "Id": 41,
+    "Titulo": "Ajudar com projeto da Faculdade",
+    "Usuario": "Let\u00EDcia",
+    "Status": false,
+    "CriadoEm": "2025-08-07T17:45:37.7818156-03:00",
     "ConcluidoEm": null,
     "ModificadoEm": null
   }
