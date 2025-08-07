@@ -166,13 +166,6 @@ public class TodoTask
 ]
 ```
 
-### **Vantagens do Armazenamento JSON**
-- ✅ **Simplicidade** - Não requer configuração de banco de dados
-- ✅ **Portabilidade** - Fácil backup e migração
-- ✅ **Legibilidade** - Formato human-readable
-- ✅ **Performance** - Rápido para pequenos volumes
-- ⚠️ **Limitações** - Não ideal para grandes volumes ou acesso concorrente
-
 ## 🌐 API RESTful
 
 ### **Endpoints Disponíveis**
@@ -331,30 +324,6 @@ dotnet --version
 2. **Controller**: `TarefasMvcController.Delete()` ou API
 3. **Data**: Remove tarefa da lista e salva JSON
 4. **Response**: Retorna status de sucesso/erro
-
-## 📝 Próximas Melhorias
-
-- [ ] Autenticação e autorização de usuários
-- [ ] Categorias e tags para tarefas
-- [ ] Notificações de prazo
-- [ ] Dashboard com estatísticas
-- [ ] Export/Import de dados
-- [ ] API completa (GET, POST, PUT)
-- [ ] Migração para banco de dados
-- [ ] Interface Dark Mode
-- [ ] PWA (Progressive Web App)
-
-## 🤝 Contribuição
-
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
 
 ## 👨‍💻 Autor
 
